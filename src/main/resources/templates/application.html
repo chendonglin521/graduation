@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>申诉页面</title>
+</head>
+
+<body>
+<section class="aui-content">
+    <div style="height:20px;"></div>
+    <div class="aui-content-up">
+        <form action="/support/submit" name="form1" method="post" enctype="multipart/form-data">
+            <div class="aui-content-up-form">
+                <h2>申诉资料填写</h2>
+            </div>
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    imei <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <input type="text" class="aui-form-control-two" name="imei1" onBlur="" required id="1" placeholder="请输入imei">
+                </div>
+            </div>
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    sno <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <input type="text" class="aui-form-control-two" name="sno" id="2" placeholder="请输入sno" onBlur="" required/>
+                </div>
+            </div>
+
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    tel <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <input type="text" class="aui-form-control-two" name="tel" id="4" placeholder="请输入tel" onBlur="" required/>
+                </div>
+            </div>
+
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    unlockId <em>*</em>
+                </label>
+                <div class="aui-form-input">
+                    <input type="text" class="aui-form-control-two" name="unlockId" id="3" placeholder="请输入解锁码" onBlur="" required/>
+                </div>
+            </div>
+
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    身份证照 <em>*</em>
+                    <span>小于5M</span>
+                </label>
+                <div class="aui-form-input">
+                    <div class="aui-content-img-box aui-content-full">
+                        <div class="aui-photo aui-up-img clear">
+                            <section class="aui-file-up fl">
+                                <input type="file" name="photos" id="id_photo" class="file" onchange="filechange1(event)" value="photos"/>
+                                <img src="" width="200px" height="200px" id="img-change1">
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    包装盒照片 <em>*</em>
+                    <span>小于5M</span>
+                </label>
+                <div class="aui-form-input">
+                    <div class="aui-content-img-box aui-content-full">
+                        <div class="aui-photo aui-up-img clear">
+                            <section class="aui-file-up fl">
+                                <input type="file" name="photos" id="package_photo" class="file" onchange="filechange2(event)" value="photos"/>
+                                <img src="" width="200px" height="200px" id="img-change2">
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    发票照片 <em>*</em>
+                    <span>小于5M</span>
+                </label>
+                <div class="aui-form-input">
+                    <div class="aui-content-img-box aui-content-full">
+                        <div class="aui-photo aui-up-img clear">
+                            <section class="aui-file-up fl">
+                                <input type="file" name="photos" id="bill_photo" class="file" onchange="filechange3(event)" value="photos"/>
+                                <img src="" width="200px" height="200px" id="img-change3">
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <input type="submit" name="提交">
+        </form>
+    </div>
+
+</section>
+
+
+<script type="text/javascript" th:src="@{/plugins/jquery.1.12.4.min.js}"></script>
+<script>
+    var filechange1=function(event){
+        var files = event.target.files, file;
+        if (files && files.length > 0) {
+            // 获取目前上传的文件
+            file = files[0];// 文件大小校验的动作
+            if(file.size > 1024 * 1024 * 5) {
+                alert('图片大小不能超过 5MB!');
+                return false;
+            }
+            var URL = window.URL || window.webkitURL;
+            var imgURL = URL.createObjectURL(file);
+            $("#img-change1").attr("src",imgURL);
+        }
+    };
+
+    var filechange2=function(event){
+        var files = event.target.files, file;
+        if (files && files.length > 0) {
+            // 获取目前上传的文件
+            file = files[0];// 文件大小校验的动作
+            if(file.size > 1024 * 1024 * 5) {
+                alert('图片大小不能超过 5MB!');
+                return false;
+            }
+            var URL = window.URL || window.webkitURL;
+            var imgURL = URL.createObjectURL(file);
+            $("#img-change2").attr("src",imgURL);
+        }
+    };
+    var filechange3=function(event){
+        var files = event.target.files, file;
+        if (files && files.length > 0) {
+            // 获取目前上传的文件
+            file = files[0];// 文件大小校验的动作
+            if(file.size > 1024 * 1024 * 5) {
+                alert('图片大小不能超过 5MB!');
+                return false;
+            }
+            var URL = window.URL || window.webkitURL;
+            var imgURL = URL.createObjectURL(file);
+            $("#img-change3").attr("src",imgURL);
+        }
+    };
+</script>
+</body>
+</html>
+

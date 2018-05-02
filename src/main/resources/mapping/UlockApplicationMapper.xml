@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.dao.UlockApplicationMapper">
+  <resultMap id="BaseResultMap" type="com.school.entity.UlockApplication">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="applicationid" jdbcType="VARCHAR" property="applicationid" />
+    <result column="unlock_id" jdbcType="VARCHAR" property="unlockId" />
+    <result column="imei1" jdbcType="VARCHAR" property="imei1" />
+    <result column="imei2" jdbcType="VARCHAR" property="imei2" />
+    <result column="sno" jdbcType="VARCHAR" property="sno" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.school.entity.UlockApplicationWithBLOBs">
+    <result column="id_photo" jdbcType="LONGVARBINARY" property="idPhoto" />
+    <result column="package_photo" jdbcType="LONGVARBINARY" property="packagePhoto" />
+    <result column="bill_photo" jdbcType="LONGVARBINARY" property="billPhoto" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, applicationid, unlock_id, imei1, imei2, sno, tel, operator, remark, state, create_time, 
+    update_time
+  </sql>
+  <sql id="Blob_Column_List">
+    id_photo, package_photo, bill_photo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from f_unlock_application
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="selectByState" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from f_unlock_application
+    where state = #{state,jdbcType=BIGINT}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from f_unlock_application
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.school.entity.UlockApplicationWithBLOBs">
+    insert into f_unlock_application (id, applicationid, unlock_id, 
+      imei1, imei2, sno, 
+      tel, operator, remark, 
+      state, create_time, update_time, 
+      id_photo, package_photo, bill_photo
+      )
+    values (#{id,jdbcType=BIGINT}, #{applicationid,jdbcType=VARCHAR}, #{unlockId,jdbcType=VARCHAR}, 
+      #{imei1,jdbcType=VARCHAR}, #{imei2,jdbcType=VARCHAR}, #{sno,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{state,jdbcType=INTEGER}, #{createTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, 
+      #{idPhoto,jdbcType=LONGVARBINARY}, #{packagePhoto,jdbcType=LONGVARBINARY}, #{billPhoto,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.school.entity.UlockApplicationWithBLOBs">
+    insert into f_unlock_application
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="applicationid != null">
+        applicationid,
+      </if>
+      <if test="unlockId != null">
+        unlock_id,
+      </if>
+      <if test="imei1 != null">
+        imei1,
+      </if>
+      <if test="imei2 != null">
+        imei2,
+      </if>
+      <if test="sno != null">
+        sno,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="idPhoto != null">
+        id_photo,
+      </if>
+      <if test="packagePhoto != null">
+        package_photo,
+      </if>
+      <if test="billPhoto != null">
+        bill_photo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="applicationid != null">
+        #{applicationid,jdbcType=VARCHAR},
+      </if>
+      <if test="unlockId != null">
+        #{unlockId,jdbcType=VARCHAR},
+      </if>
+      <if test="imei1 != null">
+        #{imei1,jdbcType=VARCHAR},
+      </if>
+      <if test="imei2 != null">
+        #{imei2,jdbcType=VARCHAR},
+      </if>
+      <if test="sno != null">
+        #{sno,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="idPhoto != null">
+        #{idPhoto,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="packagePhoto != null">
+        #{packagePhoto,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="billPhoto != null">
+        #{billPhoto,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.school.entity.UlockApplicationWithBLOBs">
+    update f_unlock_application
+    <set>
+      <if test="applicationid != null">
+        applicationid = #{applicationid,jdbcType=VARCHAR},
+      </if>
+      <if test="unlockId != null">
+        unlock_id = #{unlockId,jdbcType=VARCHAR},
+      </if>
+      <if test="imei1 != null">
+        imei1 = #{imei1,jdbcType=VARCHAR},
+      </if>
+      <if test="imei2 != null">
+        imei2 = #{imei2,jdbcType=VARCHAR},
+      </if>
+      <if test="sno != null">
+        sno = #{sno,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="idPhoto != null">
+        id_photo = #{idPhoto,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="packagePhoto != null">
+        package_photo = #{packagePhoto,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="billPhoto != null">
+        bill_photo = #{billPhoto,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.school.entity.UlockApplicationWithBLOBs">
+    update f_unlock_application
+    set applicationid = #{applicationid,jdbcType=VARCHAR},
+      unlock_id = #{unlockId,jdbcType=VARCHAR},
+      imei1 = #{imei1,jdbcType=VARCHAR},
+      imei2 = #{imei2,jdbcType=VARCHAR},
+      sno = #{sno,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      id_photo = #{idPhoto,jdbcType=LONGVARBINARY},
+      package_photo = #{packagePhoto,jdbcType=LONGVARBINARY},
+      bill_photo = #{billPhoto,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.school.entity.UlockApplication">
+    update f_unlock_application
+    set applicationid = #{applicationid,jdbcType=VARCHAR},
+      unlock_id = #{unlockId,jdbcType=VARCHAR},
+      imei1 = #{imei1,jdbcType=VARCHAR},
+      imei2 = #{imei2,jdbcType=VARCHAR},
+      sno = #{sno,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

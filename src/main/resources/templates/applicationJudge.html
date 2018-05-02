@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>申诉页面</title>
+</head>
+
+<body>
+<section class="aui-content">
+    <div style="height:20px;"></div>
+    <div class="aui-content-up">
+        <form action="" name="form1" method="post">
+            <div class="aui-content-up-form">
+                <h2>申诉资料</h2>
+            </div>
+            <div>
+                imei: <span th:text="${imei}"></span>
+                sno: <span th:text="${sno}"></span>
+                tel: <span th:text="${tel}"></span>
+                unlockId: <span th:text="${unlockId}"></span>
+            </div>
+
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    身份证照 <em>*</em>
+                </label>
+                <img th:src="'/support/judge/photo?photo=0&id=' + ${id}">
+            </div>
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    包装盒照片 <em>*</em>
+                </label>
+                <img th:src="'/support/judge/photo?photo=1&id=' + ${id}">
+
+            </div>
+
+            <div class="aui-form-group clear">
+                <label class="aui-label-control">
+                    发票照片 <em>*</em>
+                </label>
+                <img th:src="'/support/judge/photo?photo=2&id=' + ${id}">
+
+            </div>
+            <a th:href="'/support/judge/0/?id=' + ${id}">同意</a> &nbsp; &nbsp;
+            <a th:href="'/support/judge/1/?id=' + ${id}">拒绝</a>
+        </form>
+    </div>
+
+</section>
+
+
+<script type="text/javascript" th:src="@{/plugins/jquery.1.12.4.min.js}"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.dao.UlockOperatorMapper">
+  <resultMap id="BaseResultMap" type="com.school.entity.UlockOperator">
+    <id column="Id" jdbcType="BIGINT" property="id" />
+    <result column="operator" jdbcType="VARCHAR" property="operator" />
+    <result column="unlock_id" jdbcType="VARCHAR" property="unlockId" />
+    <result column="action" jdbcType="INTEGER" property="action" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    Id, operator, unlock_id, action, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from f_unlock_operator
+    where Id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from f_unlock_operator
+    where Id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.school.entity.UlockOperator">
+    insert into f_unlock_operator (Id, operator, unlock_id, 
+      action, update_time)
+    values (#{id,jdbcType=BIGINT}, #{operator,jdbcType=VARCHAR}, #{unlockId,jdbcType=VARCHAR}, 
+      #{action,jdbcType=INTEGER}, #{updateTime,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.school.entity.UlockOperator">
+    insert into f_unlock_operator
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        Id,
+      </if>
+      <if test="operator != null">
+        operator,
+      </if>
+      <if test="unlockId != null">
+        unlock_id,
+      </if>
+      <if test="action != null">
+        action,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="operator != null">
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="unlockId != null">
+        #{unlockId,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null">
+        #{action,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.school.entity.UlockOperator">
+    update f_unlock_operator
+    <set>
+      <if test="operator != null">
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="unlockId != null">
+        unlock_id = #{unlockId,jdbcType=VARCHAR},
+      </if>
+      <if test="action != null">
+        action = #{action,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.school.entity.UlockOperator">
+    update f_unlock_operator
+    set operator = #{operator,jdbcType=VARCHAR},
+      unlock_id = #{unlockId,jdbcType=VARCHAR},
+      action = #{action,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=BIGINT}
+    where Id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
