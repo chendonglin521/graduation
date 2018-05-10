@@ -5,6 +5,8 @@ import com.school.entity.SystemUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by chendonglin on 2018/4/26.
  */
@@ -18,5 +20,8 @@ public class SystemUserService {
         return systemUserMapper.selectByUsername(username);
     }
 
+    public List<SystemUser> listUsers(){
+        return systemUserMapper.listUsers();
+    }
 
 }

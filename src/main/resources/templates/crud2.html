@@ -67,7 +67,7 @@ $(function() {
 	// bootstrap table初始化
 	// http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/
 	$table.bootstrapTable({
-		url: 'data/data1.json',
+		url: 'data/data2.json',
 		height: getHeight(),
 		striped: true,
 		search: true,
@@ -91,15 +91,14 @@ $(function() {
 		sortOrder: 'desc',
 		escape: true,
 		searchOnEnterKey: true,
-		idField: 'id',
+		idField: 'systemId',
 		maintainSelected: true,
 		toolbar: '#toolbar',
 		columns: [
 			{field: 'state', checkbox: true},
 			{field: 'id', title: '编号', sortable: true, halign: 'center'},
-			{field: 'name', title: '系统名称', sortable: true, halign: 'center'},
-			{field: 'detail', title: '系统简介', sortable: true, halign: 'center'},
-			{field: 'manager', title: '系统管理员', sortable: true, halign: 'center'},
+			{field: 'name', title: '组织名称', sortable: true, halign: 'center'},
+			{field: 'staff', title: '人员', sortable: true, halign: 'center'},
 			{field: 'action', title: '操作', halign: 'center', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false}
 		]
 	}).on('all.bs.table', function (e, name, args) {

@@ -63,4 +63,8 @@
     on rp.permissionid=sp.permissionid
     where rp.roleid=#{roleid,jdbcType=INTEGER}
   </select>
+
+  <select id="listPermissions" resultMap="BaseResultMap">
+    select * from s_system_permission
+  </select>
 </mapper>

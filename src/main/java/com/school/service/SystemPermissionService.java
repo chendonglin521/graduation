@@ -19,4 +19,8 @@ public class SystemPermissionService {
     public List<SystemPermission> getPermissionByRoleid(int roleid){
         return systemPermissionMapper.getPermissionByRoleid(roleid);
     }
+
+    public List<SystemPermission> listPermissions(){
+        return systemPermissionMapper.listPermissions();
+    }
 }

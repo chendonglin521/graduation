@@ -48,6 +48,11 @@ public class IndexController {
         return "crud";
     }
 
+    @RequestMapping("/crud2")
+    public String curd2() {
+        return "crud2";
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public Object login(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) {

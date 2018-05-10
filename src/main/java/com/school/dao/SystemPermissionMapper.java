@@ -17,4 +17,6 @@ public interface SystemPermissionMapper {
 
     int updateByPrimaryKey(SystemPermission record);
     List<SystemPermission> getPermissionByRoleid(int roleid);
+
+    List<SystemPermission> listPermissions();
 }
