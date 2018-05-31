@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>通用增删改查</title>
+	<title>系统管理</title>
 
 	<link th:href="@{/plugins/bootstrap-3.3.0/css/bootstrap.min.css}" rel="stylesheet"/>
 	<link th:href="@{/plugins/material-design-iconic-font-2.2.0/css/material-design-iconic-font.min.css}" rel="stylesheet"/>
@@ -18,9 +18,9 @@
 <body>
 <div id="main">
 	<div id="toolbar">
-		<a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 新增用户</a>
-		<a class="waves-effect waves-button" href="javascript:;" onclick="updateAction()"><i class="zmdi zmdi-edit"></i> 编辑用户</a>
-		<a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除用户</a>
+		<a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 新增系统</a>
+		<a class="waves-effect waves-button" href="javascript:;" onclick="updateAction()"><i class="zmdi zmdi-edit"></i> 编辑系统</a>
+		<a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除系统</a>
 	</div>
 	<table id="table"></table>
 </div>
@@ -28,19 +28,19 @@
 <div id="createDialog" class="crudDialog" hidden>
 	<form>
 		<div class="form-group">
-			<label for="input1">标题</label>
+			<label for="input1">系统编号</label>
 			<input id="input1" type="text" class="form-control">
 		</div>
 		<div class="form-group">
-			<label for="input2">名称</label>
+			<label for="input2">系统名称</label>
 			<input id="input2" type="text" class="form-control">
 		</div>
 		<div class="form-group">
-			<label for="input3">根目录</label>
+			<label for="input3">系统简介</label>
 			<input id="input3" type="text" class="form-control">
 		</div>
 		<div class="form-group">
-			<label for="input4">图标</label>
+			<label for="input4">系统管理员</label>
 			<input id="input4" type="text" class="form-control">
 		</div>
 	</form>

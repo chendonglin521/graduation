@@ -18,9 +18,9 @@
 <body>
 <div id="main">
     <div id="toolbar">
-        <a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 新增资源</a>
-        <a class="waves-effect waves-button" href="javascript:;" onclick="updateAction()"><i class="zmdi zmdi-edit"></i> 编辑资源</a>
-        <a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除资源</a>
+        <a class="waves-effect waves-button" href="javascript:;" onclick="createAction()"><i class="zmdi zmdi-plus"></i> 新增记录</a>
+        <a class="waves-effect waves-button" href="javascript:;" onclick="updateAction()"><i class="zmdi zmdi-edit"></i> 编辑记录</a>
+        <a class="waves-effect waves-button" href="javascript:;" onclick="deleteAction()"><i class="zmdi zmdi-close"></i> 删除记录</a>
     </div>
     <table id="table"></table>
 </div>
@@ -30,12 +30,32 @@
 <div id="createDialog" class="crudDialog" hidden>
     <form>
         <div class="form-group">
-            <label for="input1">permissionid</label>
+            <label for="input1">id</label>
             <input id="input1" type="text" class="form-control">
         </div>
         <div class="form-group">
-            <label for="input2">permissionName</label>
+            <label for="input2">customer</label>
             <input id="input2" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="input3">tel</label>
+            <input id="input3" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="input4">address</label>
+            <input id="input4" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="input5">phone_model</label>
+            <input id="input5" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="input6">vat_number</label>
+            <input id="input6" type="text" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="input7">buy_way</label>
+            <input id="input7" type="text" class="form-control">
         </div>
     </form>
 </div>
@@ -61,7 +81,7 @@
         // bootstrap table初始化
         // http://bootstrap-table.wenzhixin.net.cn/zh-cn/documentation/
         $table.bootstrapTable({
-            url: '/permission/data',
+            url: '/after/repair',
             height: getHeight(),
             striped: true,
             search: true,
@@ -78,8 +98,8 @@
             paginationLoop: false,
             classes: 'table table-hover table-no-bordered',
             smartDisplay: false,
-            idField: 'permissionid',
-            sortName: 'permissionid',
+            idField: 'id',
+            sortName: 'id',
             sortOrder: 'desc',
             escape: true,
             searchOnEnterKey: true,
@@ -87,9 +107,14 @@
             toolbar: '#toolbar',
             columns: [
                 {field: 'state', checkbox: true},
-                {field: 'permissionid', title: 'permissionid', sortable: true, halign: 'center'},
-                {field: 'permissionName', title: 'permissionName', sortable: true, halign: 'center'},
-                {field: 'email', title: 'email', halign: 'center', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false}
+                {field: 'id', title: 'id', sortable: true, halign: 'center'},
+                {field: 'customer', title: 'customer', sortable: true, halign: 'center'},
+                {field: 'tel', title: 'tel', sortable: true, halign: 'center'},
+                {field: 'address', title: 'address', sortable: true, halign: 'center'},
+                {field: 'phoneModel', title: 'phoneModel', sortable: true, halign: 'center'},
+                {field: 'vatNumber', title: 'vatNumber', sortable: true, halign: 'center'},
+                {field: 'buyWay', title: 'buyWay', sortable: true, halign: 'center'},
+                {field: 'action', title: '操作', halign: 'center', align: 'center', formatter: 'actionFormatter', events: 'actionEvents', clickToSelect: false}
             ]
         }).on('all.bs.table', function (e, name, args) {
             $('[data-toggle="tooltip"]').tooltip();
@@ -205,9 +230,19 @@
                         action: function () {
                             var ids = new Array();
                             for (var i in rows) {
-                                ids.push(rows[i].systemId);
+                                ids.push(rows[i].id);
                             }
                             $.alert('删除：id=' + ids.join("-"));
+
+                            $.ajax({
+                                url: '/after/repairDelete/'+rows[i].id,
+                                type: 'POST',
+                                success: function(){
+                                    window.location.reload();
+                                },
+                            });
+
+
                         }
                     },
                     cancel: {

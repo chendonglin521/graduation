@@ -161,4 +161,8 @@
       update_time = #{updateTime,jdbcType=BIGINT}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getExchanges" resultMap="BaseResultMap">
+    select * from s_aftersale_exchange
+  </select>
 </mapper>

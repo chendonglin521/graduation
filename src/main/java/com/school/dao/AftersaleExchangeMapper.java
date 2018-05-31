@@ -2,6 +2,8 @@ package com.school.dao;
 
 import com.school.entity.AftersaleExchange;
 
+import java.util.List;
+
 public interface AftersaleExchangeMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface AftersaleExchangeMapper {
     int updateByPrimaryKeySelective(AftersaleExchange record);
 
     int updateByPrimaryKey(AftersaleExchange record);
+
+    List<AftersaleExchange> getExchanges();
 }

@@ -174,4 +174,8 @@
       update_time = #{updateTime,jdbcType=BIGINT}
     where Id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getRepairs" resultMap="BaseResultMap">
+    select * from s_aftersale_repair
+  </select>
 </mapper>
